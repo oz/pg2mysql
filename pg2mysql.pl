@@ -387,7 +387,7 @@ sub handle_insert {
     # An escaped single quote escapes, so does '', but if you use both (\'') they cancel each other out.
     # Same thing is true in JSON strings (double quoted).
     # No idea why pgdump behaves this way, seems like a bug.
-    $line =~ s/\\''/\\\\''/g; 
+    $line =~ s/\\''/\\\\'/g;
     $line =~ s/\\"/\\\\"/g; # escaped double quote characters
 
     my $statement_continues = 1;
