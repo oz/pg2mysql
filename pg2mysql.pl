@@ -195,11 +195,11 @@ sub handle_create {
     $line =~ s/::[^,]*$//; # strip extra type info
     $line =~ s/ time(\([0-6]\))? with time zone/ time$1/;
     $line =~ s/ time(\([0-6]\))? without time zone/ time$1/;
-    $line =~ s/ timestamp(\([0-6]\))? with time zone/ timestamp$1/;
-    $line =~ s/ timestamp(\([0-6]\))? without time zone/ timestamp$1/;
-    $line =~ s/ timestamp(\([0-6]\))? DEFAULT '(.*)(\+|\-).*'/ timestamp$1 DEFAULT '%1'/; # strip timezone in defaults
-    $line =~ s/ timestamp(\([0-6]\))? DEFAULT now()/ timestamp$1 DEFAULT CURRENT_TIMESTAMP/;
-    $line =~ s/ timestamp NOT NULL/ timestamp DEFAULT 0${1}${2}/;
+    $line =~ s/ timestamp(\([0-6]\))? with time zone/ datetime$1/;
+    $line =~ s/ timestamp(\([0-6]\))? without time zone/ datetime$1/;
+    $line =~ s/ timestamp(\([0-6]\))? DEFAULT '(.*)(\+|\-).*'/ datetime$1 DEFAULT '%1'/; # strip timezone in defaults
+    $line =~ s/ timestamp(\([0-6]\))? DEFAULT now()/ datetime$1 DEFAULT CURRENT_TIMESTAMP/;
+    $line =~ s/ timestamp NOT NULL/ datetime DEFAULT 0${1}${2}/;
 
     $line =~ s/ cidr/ varchar\(32\)/;
     $line =~ s/ inet/ varchar\(32\)/;
